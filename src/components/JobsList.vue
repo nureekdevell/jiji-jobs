@@ -5,7 +5,8 @@
       <li v-for="job in orderedJobs" :key="jobs.id">
         <h2>{{ job.title }} in {{ job.location }}</h2>
         <div class="salary">
-          <p>{{ job.salary }} $ dollar</p>
+          <img src="../assets/dollar-16.svg" alt="" />
+          <p>{{ job.salary }} dollar</p>
         </div>
         <div class="description">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, neque!</p>
@@ -18,7 +19,7 @@
 <script setup lang="ts">
 import { computed, defineProps, PropType } from 'vue'
 import Job from '@/types/Job'
-import type OrderTerm from '@/types/OrderTerm'
+import OrderTerm from '@/types/OrderTerm'
 const props = defineProps({
   jobs: {
     required: true,
