@@ -2,6 +2,7 @@
   <div class="app">
     <header>
       <div class="title">
+        <div><img src="../src/assets/the-monkey.svg" alt="" /></div>
         <h1 class="title-jiji">JuniorJobs</h1>
       </div>
       <div class="order">
