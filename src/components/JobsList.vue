@@ -2,7 +2,7 @@
   <div class="job-list">
     <p>Order By {{ order }}</p>
     <ul>
-      <li v-for="job in orderedJobs" :key="jobs.id">
+      <li v-for="job in orderedJobs" :key="job.id">
         <h2>{{ job.title }} in {{ job.location }}</h2>
         <div class="salary">
           <img src="../assets/dollar-16.svg" alt="" />
@@ -17,26 +17,33 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, PropType } from 'vue'
-import Job from '@/types/Job'
-import OrderTerm from '@/types/OrderTerm'
-const props = defineProps({
-  jobs: {
-    required: true,
-    type: Array as PropType<Job[]>
-  },
-  order: {
-    required: true,
-    type: String as PropType<OrderTerm>
-  }
-})
+import { computed, defineProps } from 'vue'
+import type Job from '@/types/Job'
+import type OrderTerm from '@/types/OrderTerm'
+
+const props = defineProps<{
+  jobs: Job[]
+  order: OrderTerm
+}>()
+
+// const props = defineProps({
+//   jobs: {
+//     required: true,
+//     type: Array as PropType<Job[]>
+//   },
+//   order: {
+//     required: true,
+//     type: String as PropType<OrderTerm>
+//   }
+// })
 
 const orderedJobs = computed(() => {
-  return [
-    ...props.jobs.sort((a: Job, b: Job) => {
-      return a[props.order] > b[props.order] ? 1 : -1
-    })
-  ]
+  const jobs = props.jobs
+  const orders = jobs.sort((a, b) => {
+    return a[props.order] > b[props.order] ? 1 : -1
+  })
+
+  return orders
 })
 </script>
 
